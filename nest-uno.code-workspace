@@ -1,0 +1,17 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "workbench.colorTheme": "Andromeda Italic",
+        "workbench.iconTheme": "file-icons",
+        "rest-client.environmentVariables": {
+            "$shared": {},
+            "local": {
+                "url": "http://localhost:3000"
+            }
+        }
+    }
+}
