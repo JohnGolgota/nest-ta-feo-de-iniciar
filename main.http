@@ -4,4 +4,17 @@ GET {{url}}/
 
 ###
 
-GET {{url}}/api/
+GET {{url}}/tasks/
+
+###
+
+POST  {{url}}/tasks/
+Content-Type: application/json
+
+{
+    "title": "Task 1",
+    "description": "Task 1 description",
+    "status": "pending"
+}
+
+###

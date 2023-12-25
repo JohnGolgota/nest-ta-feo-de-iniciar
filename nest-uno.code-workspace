@@ -12,6 +12,7 @@
             "local": {
                 "url": "http://localhost:3000"
             }
-        }
+        },
+        "workbench.editor.wrapTabs": false
     }
 }
