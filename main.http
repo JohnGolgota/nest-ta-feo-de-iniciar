@@ -1,3 +1,5 @@
+@id = 1
+
 ###
 
 GET {{url}}/
@@ -16,5 +18,9 @@ Content-Type: application/json
     "description": "Task 1 description",
     "status": "pending"
 }
+
+###
+
+DELETE {{url}}/tasks/1
 
 ###

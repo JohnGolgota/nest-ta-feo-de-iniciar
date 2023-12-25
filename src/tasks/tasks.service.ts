@@ -4,17 +4,17 @@ import { Task, TaskStatus } from './tasks.entity';
 @Injectable()
 export class TasksService {
     private tasks: Task[] = [{
-        id: 1,
+        id: "1",
         title: 'Task 1',
         description: 'Description 1',
         status: TaskStatus.OPEN,
     }, {
-        id: 2,
+        id: "2",
         title: 'Task 2',
         description: 'Description 2',
         status: TaskStatus.IN_PROGRESS,
     }, {
-        id: 3,
+        id: "3",
         title: 'Task 3',
         description: 'Description 3',
         status: TaskStatus.DONE,
@@ -26,7 +26,7 @@ export class TasksService {
 
     createTask(title: string, description: string) {
         const task: Task = {
-            id: this.tasks.length + 1,
+            id: this.tasks.length + "1",
             title,
             description,
             status: TaskStatus.OPEN,
@@ -35,15 +35,16 @@ export class TasksService {
         return task;
     }
 
-    getTaskById(id: number) {
+    getTaskById(id: string) {
         return this.tasks.find(task => task.id === id);
     }
 
-    deleteTaskById(id: number) {
+    deleteTaskById(id: string) {
         this.tasks = this.tasks.filter(task => task.id !== id);
+        return this.tasks;
     }
 
-    updateTaskById(id: number, title: string, description: string, status: string) {
+    updateTaskById(id: string, title: string, description: string, status: string) {
         const task = this.getTaskById(id);
         task.title = title;
         task.description = description;
