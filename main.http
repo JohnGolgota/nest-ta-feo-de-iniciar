@@ -14,7 +14,7 @@ POST  {{url}}/tasks/
 Content-Type: application/json
 
 {
-    "title": "Task 1",
+    "title": "",
     "description": "Task 1 description",
     "status": "pending"
 }
@@ -25,11 +25,11 @@ DELETE {{url}}/tasks/1
 
 ###
 
-PATCH {{url}}/tasks/5
+PATCH {{url}}/tasks/1
 Content-Type: application/json
 
 {
-    "title": "T"
+    "status": "OPEN"
 }
 
 ###
