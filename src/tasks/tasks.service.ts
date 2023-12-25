@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { patchTaskDto } from './dto/task.dto';
 import { Task, TaskStatus } from './tasks.entity';
 
 @Injectable()
@@ -35,7 +36,7 @@ export class TasksService {
         return task;
     }
 
-    getTaskById(id: string) {
+    getTaskById(id: string): Task {
         return this.tasks.find(task => task.id === id);
     }
 
@@ -44,11 +45,11 @@ export class TasksService {
         return this.tasks;
     }
 
-    updateTaskById(id: string, title: string, description: string, status: string) {
+    updateTaskById(id: string, updatedFields: patchTaskDto): Task {
         const task = this.getTaskById(id);
-        task.title = title;
-        task.description = description;
-        // task.status = status;
-        return task;
+        if (!task) return null;
+        const newaTask = { ...task, ...updatedFields };
+        this.tasks = this.tasks.map(task => task.id === id ? newaTask : task);
+        return newaTask;
     }
 }

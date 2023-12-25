@@ -24,3 +24,12 @@ Content-Type: application/json
 DELETE {{url}}/tasks/1
 
 ###
+
+PATCH {{url}}/tasks/5
+Content-Type: application/json
+
+{
+    "title": "T"
+}
+
+###
