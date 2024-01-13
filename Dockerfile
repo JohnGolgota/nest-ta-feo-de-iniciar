@@ -6,8 +6,7 @@ WORKDIR $DIR
 
 FROM base as build
 
-RUN apk update && \
-    apk add --no-cache dumb-init
+ARG NPM_TOKEN
 
 COPY package*.json $DIR
 
@@ -21,6 +20,24 @@ COPY src $DIR/src
 
 RUN npm run build && \
     npm prune --production
+
+FROM base as development
+
+ARG NPM_TOKEN
+
+COPY package*.json $DIR
+
+RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc && \
+    npm install && \
+    rm -f .npmrc
+
+COPY tsconfig*.json $DIR
+
+COPY src $DIR/src
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
 
 FROM base as production
 

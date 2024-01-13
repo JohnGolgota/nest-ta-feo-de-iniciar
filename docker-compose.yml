@@ -4,7 +4,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: production
     env_file:
       - .env
     ports:
       - $APP_PORT:$APP_PORT
+  api-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    env_file:
+      - .env
+    ports:
+      - $APP_PORT:$APP_PORT
+    volumes:
+      - .:/app
