@@ -1,18 +1,25 @@
 FROM node:18-alpine3.16
 
-WORKDIR /app
+RUN apk update && \
+    apk add --no-cache dumb-init
 
-COPY package*.json /app
+ENV DIR /app
+
+WORKDIR $DIR
+
+COPY package*.json $DIR
 
 RUN npm ci
 
-COPY tsconfig*.json /app
+COPY tsconfig*.json $DIR
 
-COPY src /app/src
+COPY src $DIR/src
 
 RUN npm run build && \
     npm prune --production
 
+ENV NODE_ENV=production
+
 EXPOSE 3000
 
-CMD ["node", "dist/index.js"]
+CMD ["dumb-init", "node", "dist/index.js"]
