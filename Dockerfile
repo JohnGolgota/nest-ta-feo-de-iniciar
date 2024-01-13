@@ -24,6 +24,8 @@ RUN npm run build && \
 
 FROM base as production
 
+ENV USER node
+
 COPY --from=build /usr/bin/dumb-init /usr/bin/dumb-init
 
 COPY --from=build $DIR/node_modules $DIR/node_modules
@@ -33,5 +35,7 @@ COPY --from=build $DIR/dist $DIR/dist
 ENV NODE_ENV=production
 
 EXPOSE 3000
+
+USER $USER
 
 CMD ["dumb-init", "node", "dist/index.js"]
