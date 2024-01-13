@@ -11,7 +11,9 @@ RUN apk update && \
 
 COPY package*.json $DIR
 
-RUN npm ci
+RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc && \
+    npm ci && \
+    rm -f .npmrc
 
 COPY tsconfig*.json $DIR
 
