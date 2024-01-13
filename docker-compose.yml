@@ -10,13 +10,20 @@ services:
     ports:
       - $APP_PORT:$APP_PORT
   api-dev:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
       target: development
+      args:
+        - APP_PORT=$APP_PORT
     env_file:
       - .env
     ports:
       - $APP_PORT:$APP_PORT
     volumes:
       - .:/app
+      - node_modules:/app/node_modules
+
+volumes:
+  node_modules:

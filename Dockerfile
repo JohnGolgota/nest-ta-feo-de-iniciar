@@ -35,7 +35,7 @@ COPY tsconfig*.json $DIR
 
 COPY src $DIR/src
 
-EXPOSE 3000
+EXPOSE $APP_PORT
 
 CMD ["npm", "run", "dev"]
 
@@ -51,7 +51,7 @@ COPY --from=build $DIR/dist $DIR/dist
 
 ENV NODE_ENV=production
 
-EXPOSE 3000
+EXPOSE $APP_PORT
 
 USER $USER
 
