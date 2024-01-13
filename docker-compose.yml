@@ -21,6 +21,7 @@ services:
       - .env
     ports:
       - $APP_PORT:$APP_PORT
+      - 9229:9229
     volumes:
       - .:/app
       - node_modules:/app/node_modules
